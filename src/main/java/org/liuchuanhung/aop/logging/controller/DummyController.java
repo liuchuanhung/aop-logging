@@ -19,7 +19,9 @@ public class DummyController {
 
     @Loggable
     @PostMapping
-    public String greeting2(@RequestBody String request) {
-        return "nice to meet you.";
+    public void greeting2(@RequestBody String request) {
+        /*
+           do nothing
+         */
     }
 }
