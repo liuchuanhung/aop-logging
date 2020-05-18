@@ -1,6 +1,8 @@
 package org.liuchuanhung.aop.logging.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
@@ -25,5 +27,10 @@ public class LoggableAspect {
         LOGGER.info("Calling Method: " + joinPoint.getStaticPart().getSignature().getName()); //calling method
         LOGGER.info("Arguments Passed: " + Arrays.toString(joinPoint.getArgs()));
         return proceed;
+    }
+
+    @AfterReturning(value = "@annotation(org.liuchuanhung.aop.logging.annotation.Loggable)", returning = "result")
+    public void afterReturningLoggable(JoinPoint joinPoint, Object result) {
+        LOGGER.info("Response: " + result);
     }
 }
