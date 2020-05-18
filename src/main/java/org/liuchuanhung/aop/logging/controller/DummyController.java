@@ -9,7 +9,7 @@ public class DummyController {
 
     @Loggable
     @GetMapping("/{dummyPath}")
-    public String greeting(@RequestParam("name") String name , @PathVariable("dummyPath") String dummyPath) {
+    public String greeting(@PathVariable("dummyPath") String dummyPath, @RequestParam("name") String name) {
         StringBuilder sb = new StringBuilder();
         sb.append("Hello ");
         sb.append(name);

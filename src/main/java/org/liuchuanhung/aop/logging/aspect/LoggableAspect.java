@@ -5,11 +5,12 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.*;
 
 @Aspect
 @Component
@@ -25,7 +26,11 @@ public class LoggableAspect {
         LOGGER.info("Execution Time: " + executionTime + "ms");
         LOGGER.info("Calling Class: " + joinPoint.getStaticPart().getSignature().getDeclaringTypeName()); //calling class
         LOGGER.info("Calling Method: " + joinPoint.getStaticPart().getSignature().getName()); //calling method
-        LOGGER.info("Arguments Passed: " + Arrays.toString(joinPoint.getArgs()));
+
+        List<Map<Object, Object>> paramTypeToValueMaps = mapParameterValueToType(
+                ((MethodSignature) joinPoint.getSignature()).getParameterTypes(),  joinPoint.getArgs());
+
+        LOGGER.info("Method Argument(s): " + paramTypeToValueMaps.toString());
         return proceed;
     }
 
@@ -34,5 +39,15 @@ public class LoggableAspect {
         if (result != null) {
             LOGGER.info("Response: " + result);
         }
+    }
+
+    private List<Map<Object, Object>> mapParameterValueToType(Class[] parameterTypes, Object[] values) {
+        List<Map<Object, Object>> paramToValueMaps = new ArrayList<>();
+        for (int i=0; i<parameterTypes.length; i++) {
+            Map<Object, Object> paramToValueMap = new HashMap<>();
+            paramToValueMap.put(parameterTypes[i], values[i]);
+            paramToValueMaps.add(paramToValueMap);
+        }
+        return paramToValueMaps;
     }
 }
