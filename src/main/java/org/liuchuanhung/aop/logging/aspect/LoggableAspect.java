@@ -37,7 +37,9 @@ public class LoggableAspect {
     @AfterReturning(value = "@annotation(org.liuchuanhung.aop.logging.annotation.Loggable)", returning = "result")
     public void afterReturningLoggable(JoinPoint joinPoint, Object result) {
         if (result != null) {
-            LOGGER.info("Response: " + result);
+            String returnType = ((MethodSignature) joinPoint.getSignature()).getReturnType().getTypeName();
+            LOGGER.info("Return Type: " + returnType);
+            LOGGER.info("Return Value: " + result);
         }
     }
 
