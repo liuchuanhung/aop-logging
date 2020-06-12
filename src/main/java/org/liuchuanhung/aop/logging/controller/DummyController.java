@@ -16,12 +16,4 @@ public class DummyController {
         sb.append("!");
         return sb.toString();
     }
-
-    @Loggable
-    @PostMapping
-    public void greeting2(@RequestBody String request) {
-        /*
-           do nothing
-         */
-    }
 }

@@ -1,4 +1,4 @@
-package org.liuchuanhung.aop.logging.annotation;
+package org.liuchuanhung.aop.logging.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
