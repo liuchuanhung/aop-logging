@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DummyControllerTest {
@@ -14,7 +13,7 @@ public class DummyControllerTest {
 
     @Test
     public void loggableTest() throws Throwable {
-        String response = dummyController.greeting("dummyPath", "Ryan");
+        String response = dummyController.greeting("Ryan");
         assertEquals("Hello Ryan!", response);
     }
 }

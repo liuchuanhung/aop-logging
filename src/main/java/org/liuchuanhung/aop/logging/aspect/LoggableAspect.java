@@ -18,7 +18,7 @@ public class LoggableAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggableAspect.class);
 
-    @Around("@annotation(Loggable)")
+    @Around("@annotation(org.liuchuanhung.aop.logging.annotation.Loggable)")
     public Object loggable(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object proceed = joinPoint.proceed();
@@ -34,7 +34,7 @@ public class LoggableAspect {
         return proceed;
     }
 
-    @AfterReturning(value = "@annotation(Loggable)", returning = "result")
+    @AfterReturning(value = "@annotation(org.liuchuanhung.aop.logging.annotation.Loggable)", returning = "result")
     public void afterReturningLoggable(JoinPoint joinPoint, Object result) {
         if (result != null) {
             String returnType = ((MethodSignature) joinPoint.getSignature()).getReturnType().getTypeName();

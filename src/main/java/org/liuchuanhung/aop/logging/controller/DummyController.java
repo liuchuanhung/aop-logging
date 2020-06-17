@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 public class DummyController {
 
     @Loggable
-    @GetMapping("/{dummyPath}")
-    public String greeting(@PathVariable("dummyPath") String dummyPath, @RequestParam("name") String name) {
+    @GetMapping
+    public String greeting(@RequestParam("name") String name) {
         StringBuilder sb = new StringBuilder();
         sb.append("Hello ");
         sb.append(name);

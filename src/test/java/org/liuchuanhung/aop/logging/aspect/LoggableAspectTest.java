@@ -5,7 +5,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.liuchuanhung.aop.logging.aspect.LoggableAspect;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
